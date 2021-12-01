@@ -23,7 +23,9 @@ namespace CasaDoCodigo
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
-
+      
+      //ISSO É CODE FIRST, PORRA!!!
+      //Update-database -verbose atualizar a base, serve para criar as bases já físicas,
       //Add-Migration Inicial é como se  forma de inicia o migration 
       //AJUSTAR DEPOIS PARA BUSCAR DO CONNECTION STRING
       //string connectionString = Configuration.GetConnectionString("Default");
