@@ -17,15 +17,17 @@ namespace CasaDoCodigo
       Configuration = configuration;
     }
 
-    public IConfiguration Configuration { get; }
+    public IConfiguration Configuration { get; private set; }
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
 
-      string connectionString = Configuration.GetConnectionString("Default");
-      services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+      //Add-Migration Inicial é como se  forma de inicia o migration 
+      //AJUSTAR DEPOIS PARA BUSCAR DO CONNECTION STRING
+      //string connectionString = Configuration.GetConnectionString("Default");
+      services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CasaDoCodigo;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +42,8 @@ namespace CasaDoCodigo
       {
         app.UseExceptionHandler("/Home/Error");
       }
+
+      Configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
       app.UseStaticFiles();
 
