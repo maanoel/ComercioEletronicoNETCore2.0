@@ -4,9 +4,16 @@ namespace CasaDoCodigo.Controllers
 {
   public class PedidoController: Controller
   {
+    private readonly IProdutoRepository produtoRepository;
+
+    public PedidoController(IProdutoRepository produtoRepository)
+    {
+      this.produtoRepository = produtoRepository;
+    }
+
     public IActionResult Carrossel() 
     {
-      return View();
+      return View(this.produtoRepository.ObterProdutos());
     }
 
     public IActionResult Carrinho()

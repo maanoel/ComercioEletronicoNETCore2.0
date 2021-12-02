@@ -29,6 +29,8 @@ namespace CasaDoCodigo
       services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CasaDoCodigo;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
       services.AddTransient<IDataService, DataService>();
+      services.AddTransient<IProdutoRepository, ProdutoRepository>();
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
