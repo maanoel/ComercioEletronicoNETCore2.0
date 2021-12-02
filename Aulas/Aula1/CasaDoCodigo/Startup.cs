@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CasaDoCodigo
 {
-  public class Startup
+  public  class Startup
   {
     public Startup(IConfiguration configuration)
     {
@@ -30,6 +27,8 @@ namespace CasaDoCodigo
       //AJUSTAR DEPOIS PARA BUSCAR DO CONNECTION STRING
       //string connectionString = Configuration.GetConnectionString("Default");
       services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CasaDoCodigo;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
+      services.AddTransient<IDataService, DataService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,10 +61,7 @@ namespace CasaDoCodigo
       //.EnsureCreated();
 
       serviceProvider
-      .GetService<ApplicationContext>()
-      .Database
-      .Migrate();
-
+      .GetService<IDataService>().InicializaDB();
     }
   }
 }
