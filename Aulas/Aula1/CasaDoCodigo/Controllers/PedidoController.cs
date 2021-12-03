@@ -14,7 +14,7 @@ namespace CasaDoCodigo.Controllers
     public IActionResult Carrossel() 
     {
       return View(this.produtoRepository.ObterProdutos());
-    }
+    } 
 
     public IActionResult Carrinho()
     {

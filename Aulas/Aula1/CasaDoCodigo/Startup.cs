@@ -20,6 +20,8 @@ namespace CasaDoCodigo
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
+      services.AddDistributedMemoryCache();
+      services.AddSession();
       
       //ISSO É CODE FIRST, PORRA!!!
       //Update-database -verbose atualizar a base, serve para criar as bases já físicas,
@@ -51,18 +53,14 @@ namespace CasaDoCodigo
       Configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
       app.UseStaticFiles();
+      app.UseSession();
 
       app.UseMvc(routes =>
       {
         routes.MapRoute(
                   name: "default",
-                  template: "{controller=Pedido}/{action=Carrossel}/{id?}");
+                  template: "{controller=Pedido}/{action=Carrossel}/{codigo?}");
       });
-
-      //serviceProvider
-      //.GetService<ApplicationContext>()
-      //.Database
-      //.EnsureCreated();
 
       serviceProvider
       .GetService<IDataService>().InicializaDB();
