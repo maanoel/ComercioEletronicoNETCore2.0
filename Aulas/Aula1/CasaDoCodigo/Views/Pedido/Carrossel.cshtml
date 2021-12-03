@@ -1,4 +1,8 @@
-﻿@model List<Produto>
+﻿@{
+    ViewData["title"] = "Carrossel";
+}
+
+@model List<Produto>
 <Produto>
     ;
     <h3>Catálogo</h3>
@@ -6,13 +10,13 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             @{ const int TAMANHO_PAGINA = 4;
-                int paginas = (int) Math.Ceiling((double)Model.Count() / TAMANHO_PAGINA); }
+                int paginas = (int)Math.Ceiling((double)Model.Count() / TAMANHO_PAGINA); }
 
             @for(int pagina = 0; pagina < paginas; pagina++)
             {
                 <div class="item @(pagina==0 ? "active": "")">
                     <div class="row">
-                        @{ var produtosDaPagina = Model.Skip(pagina*TAMANHO_PAGINA).Take(TAMANHO_PAGINA); }
+                        @{ var produtosDaPagina = Model.Skip(pagina * TAMANHO_PAGINA).Take(TAMANHO_PAGINA); }
                         @foreach(var produto in produtosDaPagina)
                         {
                             <div class="col-md-3 col-sm-3 col-lg-3">
@@ -26,7 +30,7 @@
                                             <h4><strong>@produto.Preco</strong></h4>
                                         </div>
                                         <div class="text-center">
-                                            <a href="/" class="btn btn-success">Adicionar</a>
+                                            <a asp-controller="pedido" asp-action="carrinho" class="btn btn-success">Adicionar</a>
                                         </div>
                                     </div>
                                 </div>
