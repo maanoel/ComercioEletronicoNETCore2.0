@@ -1,5 +1,6 @@
 ﻿using CasaDoCodigo.Models;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Linq;
 
 namespace CasaDoCodigo
@@ -40,5 +41,27 @@ namespace CasaDoCodigo
       contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
     }
 
+    public void AdicionarItem(string codigo)
+    {
+      var produto = contexto.Set<Produto>().Where(p => p.Codigo == codigo).SingleOrDefault();
+
+      if(produto == null)
+      {
+        throw new ArgumentException("Produto não encontrado");
+      }
+
+      var pedido = ObterPedido();
+
+      var itemPedido = contexto.Set<ItemPedido>()
+        .Where(i => i.Produto.Codigo == codigo && i.Pedido.Id == pedido.Id)
+        .SingleOrDefault();
+
+      if(itemPedido == null) {
+        itemPedido = new ItemPedido(pedido, produto, 1, produto.Preco);
+        contexto.Set<ItemPedido>().Add(itemPedido);
+        contexto.SaveChanges();
+      }
+
+    }
   }
 }

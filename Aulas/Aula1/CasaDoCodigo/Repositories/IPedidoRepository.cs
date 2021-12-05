@@ -5,5 +5,6 @@ namespace CasaDoCodigo
   public interface IPedidoRepository
   {
     Pedido ObterPedido();
+    void AdicionarItem(string codigo);
   }
 }
