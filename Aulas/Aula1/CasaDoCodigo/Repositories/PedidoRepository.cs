@@ -43,7 +43,7 @@ namespace CasaDoCodigo
 
     public void AdicionarItem(string codigo)
     {
-      var produto = contexto.Set<Produto>().Where(p => p.Codigo == codigo).SingleOrDefault();
+      var produto = contexto.Set<Produto>().Where(p => p.Codigo == codigo).FirstOrDefault();
 
       if(produto == null)
       {

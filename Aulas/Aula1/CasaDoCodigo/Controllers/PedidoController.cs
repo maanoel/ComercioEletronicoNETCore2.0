@@ -21,8 +21,8 @@ namespace CasaDoCodigo.Controllers
 
     public IActionResult Carrinho(string codigo)
     {
-      if(!string.IsNullOrEmpty(codigo)) { 
-          pedidoRepository.AdicionarItem(codigo)/
+      if(!string.IsNullOrEmpty(codigo)) {
+        pedidoRepository.AdicionarItem(codigo);
       }
 
       Pedido pedido = pedidoRepository.ObterPedido();
