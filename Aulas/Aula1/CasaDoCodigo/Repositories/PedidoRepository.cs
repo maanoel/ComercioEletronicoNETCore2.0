@@ -1,11 +1,11 @@
 ﻿using CasaDoCodigo.Models;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace CasaDoCodigo
 {
   public  class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
   {
-
     private readonly IHttpContextAccessor contextAccessor;
     public PedidoRepository(ApplicationContext contexto, IHttpContextAccessor contextAccessor) : base(contexto)
     {
@@ -18,6 +18,23 @@ namespace CasaDoCodigo
 
     private void DefinirPedidoId(int pedidoId) {
       contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
+    }
+
+    public Pedido ObterPedido()
+    {
+      var pedidoId = ObterPedidoId();
+      var pedido = dbSet
+      .Where(p => p.Id == pedidoId)
+      .SingleOrDefault();
+
+
+      if(pedido == null) {
+        pedido = new Pedido();
+        dbSet.Add(pedido);
+        contexto.SaveChanges();
+      }
+
+      return pedido;
     }
   }
 }
