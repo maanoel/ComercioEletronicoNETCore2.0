@@ -13,6 +13,5 @@ namespace CasaDoCodigo
       this.contexto = contexto;
       this.dbSet = contexto.Set<T>();
     }
-
   }
 }

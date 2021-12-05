@@ -12,14 +12,6 @@ namespace CasaDoCodigo
       this.contextAccessor = contextAccessor;
     }
 
-    private int? ObterPedidoId() {
-      return contextAccessor.HttpContext.Session.GetInt32("pedidoId");
-    }
-
-    private void DefinirPedidoId(int pedidoId) {
-      contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
-    }
-
     public Pedido ObterPedido()
     {
       var pedidoId = ObterPedidoId();
@@ -27,14 +19,26 @@ namespace CasaDoCodigo
       .Where(p => p.Id == pedidoId)
       .SingleOrDefault();
 
-
       if(pedido == null) {
         pedido = new Pedido();
         dbSet.Add(pedido);
         contexto.SaveChanges();
+        DefinirPedidoId(pedido.Id);
       }
 
       return pedido;
     }
+
+
+    private int? ObterPedidoId()
+    {
+      return contextAccessor.HttpContext.Session.GetInt32("pedidoId");
+    }
+
+    private void DefinirPedidoId(int pedidoId)
+    {
+      contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
+    }
+
   }
 }
