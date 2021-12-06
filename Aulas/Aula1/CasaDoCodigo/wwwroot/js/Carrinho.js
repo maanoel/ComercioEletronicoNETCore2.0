@@ -25,7 +25,7 @@
         let itemId = $(linhaDoItem).attr('item-id');
         let novaQtde = $(linhaDoItem).find('input').val();
 
-        return data = {
+        return  {
             Id: itemId,
             Quantidade: novaQtde
         };
