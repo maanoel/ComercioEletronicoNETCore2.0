@@ -104,7 +104,17 @@
             let itemId = $(linhaDoItem).attr('item-id');
             let novaQtde = $(linhaDoItem).find('input').val();
 
+            const data = {
+                Id: itemId,
+                Quantidade: novaQtde
+            }
 
+            $.ajax({
+                url: '/pedido/updatequantidade',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            })
         }
     </script>
 }

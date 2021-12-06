@@ -41,7 +41,7 @@ namespace CasaDoCodigo.Controllers
 
 
     [HttpPost]
-    public void UpdateQuantidade(int itemPedidoId, int quantidade) 
+    public void UpdateQuantidade([FromBody] ItemPedido itemPedido) 
     {
       
     }
