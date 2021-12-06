@@ -38,4 +38,3 @@
 }
 
 var carrinho = new Carrinho();
-
