@@ -1,4 +1,8 @@
-﻿namespace CasaDoCodigo
+﻿using CasaDoCodigo.Models;
+
+namespace CasaDoCodigo
 {
-  public interface IItemPedidoRepository { }
+  public interface IItemPedidoRepository {
+    void UpdateQuantidade(ItemPedido itemPedido);
+  }
 }
