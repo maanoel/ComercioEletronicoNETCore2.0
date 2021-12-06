@@ -18,7 +18,7 @@ namespace CasaDoCodigo
       if(itemPedidoDb != null) {
         itemPedidoDb.AtualizaQuantidade(itemPedido.Quantidade);
         contexto.SaveChanges();
-      }
+      } 
     }
   }
 }
