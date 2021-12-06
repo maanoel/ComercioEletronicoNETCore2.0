@@ -9,16 +9,11 @@ namespace CasaDoCodigo
     {
     }
 
-    public void UpdateQuantidade(ItemPedido itemPedido)
+    public ItemPedido ObterItemPedido(int itemPedidoId)
     {
-      var itemPedidoDb = dbSet
-          .Where(item => item.Id == itemPedido.Id)
+      return dbSet
+          .Where(item => item.Id == itemPedidoId)
           .FirstOrDefault();
-
-      if(itemPedidoDb != null) {
-        itemPedidoDb.AtualizaQuantidade(itemPedido.Quantidade);
-        contexto.SaveChanges();
-      }  
     }
   }
 }
