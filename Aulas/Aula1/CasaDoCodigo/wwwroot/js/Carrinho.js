@@ -25,7 +25,6 @@
         this.postarQuantidade(data);
     }
 
-
     obterData(elemento) {
         let linhaDoItem = $(elemento).parents('[item-id]');
         let itemId = $(linhaDoItem).attr('item-id');
