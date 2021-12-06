@@ -17,7 +17,9 @@
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(data)
-        })
+        }).done(function (response) {
+            location.reload();
+        });
     }
 
     atualizarQuantidade(input) {
