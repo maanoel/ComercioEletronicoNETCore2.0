@@ -15,5 +15,10 @@ namespace CasaDoCodigo
           .Where(item => item.Id == itemPedidoId)
           .FirstOrDefault();
     }
+
+    public void RemoverItemPedido(int itemPedidoId)
+    {
+      dbSet.Remove(ObterItemPedido(itemPedidoId));
+    }
   }
 }
