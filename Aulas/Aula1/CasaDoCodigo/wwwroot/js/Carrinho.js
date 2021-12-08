@@ -1,12 +1,12 @@
 ﻿class Carrinho {
-    clickIncremento(btn) {
-        let data = this.obterData(btn);
+    clickIncremento(button) {
+        let data = this.obterData(button);
         data.Quantidade++;
         this.postarQuantidade(data);
     }
 
-    clickDecremento(btn) {
-        let data = this.obterData(btn);
+    clickDecremento(button) {
+        let data = this.obterData(button);
         data.Quantidade--;
         this.postarQuantidade(data);
     }
@@ -36,7 +36,6 @@
             if (itemPedido.quantidade == 0) {
                 linhaDoItem.remove();
             }
-
         });
     }
 
@@ -48,11 +47,11 @@
     obterData(elemento) {
         let linhaDoItem = $(elemento).parents('[item-id]');
         let itemId = $(linhaDoItem).attr('item-id');
-        let novaQtde = $(linhaDoItem).find('input').val();
+        let novaQuantidade = $(linhaDoItem).find('input').val();
 
         return  {
             Id: itemId,
-            Quantidade: novaQtde
+            Quantidade: novaQuantidade
         };
     }
 }
