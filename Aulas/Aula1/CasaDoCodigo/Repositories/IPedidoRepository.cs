@@ -6,8 +6,9 @@ namespace CasaDoCodigo
   {
     Pedido ObterPedido();
     void AdicionarItem(string codigo);
-
     UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido);
+
+    Pedido UpdateCadastro(Cadastro cadastro);
 
   }
 }
