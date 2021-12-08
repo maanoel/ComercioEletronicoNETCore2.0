@@ -10,7 +10,7 @@ namespace CasaDoCodigo
     {
     }
 
-    public CadastroRepository Update(int cadastroId, Cadastro novoCadastro)
+    public void Update(int cadastroId, Cadastro novoCadastro)
     {
       var cadastroDb = dbSet.Where(c => c.Id == cadastroId).SingleOrDefault();
 
@@ -20,7 +20,6 @@ namespace CasaDoCodigo
       cadastroDb.Update(novoCadastro);
       contexto.SaveChanges();
 
-      return cadastroDb;
     }
   }
 }

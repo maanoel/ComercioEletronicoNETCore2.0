@@ -5,6 +5,6 @@ namespace CasaDoCodigo
 
     public interface ICadastroRepository {
 
-    CadastroRepository Update(int cadastroId, Cadastro novoCadastro);
+    void Update(int cadastroId, Cadastro novoCadastro);
     }
 }
